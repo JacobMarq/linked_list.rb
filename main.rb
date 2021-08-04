@@ -1,8 +1,4 @@
-require_relative "linked_lists.rb"
-require_relative "node.rb"
-
-include Node
-include LinkedList
+require_relative "linked_list.rb"
 
 list = LinkedList.new
 
