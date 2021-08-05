@@ -129,17 +129,17 @@ class LinkedList
   def reverse!
     return if @head.nil?
     
-    n = @head
-    @head = n.next_node
-    n.next_node = nil
-    @tail = n
+    node = @head
+    @head = @head.next_node
+    node.next_node = nil
+    @tail = node
     prev = @tail
     
     until @head.nil?
-      n = @head
-      @head = n.next_node
-      n.next_node = prev
-      prev = n
+      node = @head
+      @head = @head.next_node
+      node.next_node = prev
+      prev = node
     end
     
     @head = prev
