@@ -25,3 +25,7 @@ puts "at 3: #{list.at(3)}, value: #{list.at(3).value}"
 puts "contains 1?: #{list.contains?(1)}"
 puts "contains 3?: #{list.contains?(3)}"
 puts "find 8: #{list.find(8)}"
+list.reverse!
+puts "reverse!: #{list.to_s}"
+list.each { |i| puts i.value }
+puts "reverse: #{list.reverse}"
