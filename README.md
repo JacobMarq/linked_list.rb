@@ -13,8 +13,11 @@ The goal of this project was to learn about additional data structures and ways 
   |#tail|	Returns the last node in the list|
   |#at(index)|	Returns the node at the given index|
   |#pop|	Removes the last element from the list|
-  |#contains?(value)|	Returns true if the passed in value is in the list otherwise returns false.|
-  |#find(value)|	Returns the index of the node containing value, or nil if not found.|
-  |#to_s|	Represent your LinkedList objects as strings, so you can print them out and preview them in the console.|
-  |#insert_at(value, index)|	Inserts a new node with the provided value at the given index.|
-  |#remove_at(index)|	Removes the node at the given index.|
+  |#contains?(value)|	Returns true if the passed in value is in the list otherwise returns false|
+  |#find(value)|	Returns the index of the node containing value, or nil if not found|
+  |#to_s|	Represent your LinkedList objects as strings, so you can print them out and preview them in the console|
+  |#insert_at(value, index)|	Inserts a new node with the provided value at the given index|
+  |#remove_at(index)|	Removes the node at the given index|
+  |#reverse!|Destructive: reverses the list|
+  |#reverse|Non-destructive: returns a reversed copy of the list|
+  |#each|Yields every node in the list|
