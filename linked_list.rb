@@ -1,8 +1,8 @@
 require_relative "node.rb"
+include Enumerable
 
 class LinkedList
-  attr_accessor :name
-  attr_reader :head, :tail
+  attr_accessor :head, :tail, :name
   def initialize
     @head = nil
     @tail = nil
@@ -15,7 +15,7 @@ class LinkedList
     @tail.next_node = node if @tail != nil
     @tail = node
     
-    @head = node if @head === nil
+    @head = node if @head.nil?
   end
 
   def prepend(value)
@@ -23,15 +23,16 @@ class LinkedList
     node.next_node = @head
     
     @head = node
-    @tail = node if @tail === nil
+    @tail = node if @tail.nil?
   end
 
   def size
+    return nil if @head.nil?
+    
     count = 0
-    return count if @head === nil
     node = @head
 
-    while node != nil
+    until node.nil?
       count += 1
       node = node.next_node
     end
@@ -39,10 +40,12 @@ class LinkedList
   end
   
   def at(index)
+    return nil if @head.nil?
+    
     node = @head
     
     for i in 0...index
-      return node if node === nil
+      return node if node.nil?
       node = node.next_node
     end
     
@@ -50,8 +53,9 @@ class LinkedList
   end
   
   def pop
+    return if @head.nil?
+    
     node = @head
-    return if @head === nil
     
     for i in 0...(size - 2)
       node = node.next_node
@@ -62,8 +66,9 @@ class LinkedList
   end
   
   def contains?(value)
+    return false if @head.nil?
+    
     node = @head
-    return false if node === nil 
     
     for i in 0...size
       return true if node.value == value
@@ -74,8 +79,9 @@ class LinkedList
   end
   
   def find(value)
+    return nil if @head.nil? 
+    
     node = @head
-    return nil if node === nil 
     
     for i in 0...size
       return i if node.value == value
@@ -86,6 +92,8 @@ class LinkedList
   end
   
   def to_s
+    return nil if @head.nil?
+    
     node = @head
     str = ""
     
@@ -99,6 +107,8 @@ class LinkedList
   end
   
   def insert_at(value, index)
+    return nil if @head.nil?
+    
     current_node = at(index)
     previous_node = at(index - 1)
     
@@ -109,10 +119,47 @@ class LinkedList
   
   def remove_at(index)
     node = at(index)
-    return if node == nil
+    return nil if node.nil?
     
     previous_node = at(index - 1)
     
     previous_node.next_node = node.next_node
+  end
+  
+  def reverse!
+    return if @head.nil?
+    
+    n = @head
+    @head = n.next_node
+    n.next_node = nil
+    @tail = n
+    prev = @tail
+    
+    until @head.nil?
+      n = @head
+      @head = n.next_node
+      n.next_node = prev
+      prev = n
+    end
+    
+    @head = prev
+  end
+  
+  def each
+    return nil if @head.nil?
+    
+    input = @head
+    until input.nil?
+      yield input
+      input = input.next_node
+    end
+  end
+  
+  def reverse
+    return nil if @head.nil?
+    
+    new_list = LinkedList.new
+    self.each { |i| new_list.append(i.value) }
+    return new_list
   end
 end
